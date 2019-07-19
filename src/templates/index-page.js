@@ -4,17 +4,32 @@ import { Link, graphql } from 'gatsby'
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Content, { HTMLContent } from "../components/content"
 
-export const IndexPageTemplate = ({ title, heading, description, src, alt, content }) => (
-  <Layout>
-    <SEO title={title} />
-    <h1>{heading}</h1>
-    <p>{description}</p>
-    <img src={src} alt={alt} />
-    <div dangerouslySetInnerHTML={{ __html: content }} />
-    <Link to="/blog/">>> Go to blog page</Link>
-  </Layout>
-)
+export const IndexPageTemplate = ({ title, heading, description, src, alt, content, contentComponent }) => {
+  const PageContent = contentComponent || Content
+    
+  return ( 
+    <Layout>
+      <SEO title={title} />
+      <h1>{heading}</h1>
+      <p>{description}</p>
+      <img src={src} alt={alt} />
+      <PageContent content={content} />
+      <Link to="/page-2/">>> Go to second page</Link>
+    </Layout>
+  )
+}
+
+IndexPageTemplate.propTypes = {
+  title: PropTypes.string.isRequired,
+  heading: PropTypes.string,
+  description: PropTypes.string,
+  src: PropTypes.string,
+  alt: PropTypes.string,
+  content: PropTypes.string,
+  contentComponent: PropTypes.func,
+}
 
 const IndexPage = ({ data }) => {
   const { title: siteTitle } = data.site.siteMetadata
@@ -30,6 +45,7 @@ const IndexPage = ({ data }) => {
       src={image.src}
       alt={image.alt}
       content={html}
+      contentComponent={HTMLContent}
     />
   )
 }
