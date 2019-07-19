@@ -5,6 +5,17 @@ import { Link, graphql } from 'gatsby'
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
+export const IndexPageTemplate = ({ title, heading, description, src, alt, content }) => (
+  <Layout>
+    <SEO title={title} />
+    <h1>{heading}</h1>
+    <p>{description}</p>
+    <img src={src} alt={alt} />
+    <div dangerouslySetInnerHTML={{ __html: content }} />
+    <Link to="/blog/">>> Go to blog page</Link>
+  </Layout>
+)
+
 const IndexPage = ({ data }) => {
   const { title: siteTitle } = data.site.siteMetadata
   const { frontmatter, html } = data.markdownRemark
@@ -12,14 +23,14 @@ const IndexPage = ({ data }) => {
   const editedTitle = `${title} - ${siteTitle}`
 
   return (
-    <Layout>
-      <SEO title={editedTitle} />
-      <h1>{intro.heading}</h1>
-      <p>{intro.description}</p>
-      <img src={image.src} alt={image.alt} />
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-      <Link to="/page-2/">>> Go to second page</Link>
-    </Layout>
+    <IndexPageTemplate
+      title={editedTitle}
+      heading={intro.heading}
+      description={intro.description}
+      src={image.src}
+      alt={image.alt}
+      content={html}
+    />
   )
 }
 
@@ -49,7 +60,7 @@ export const pageQuery = graphql`
           description
         }
         image {
-          src
+          src 
           alt
         }
       }
