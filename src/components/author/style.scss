@@ -1,0 +1,25 @@
+.author-container {
+  float: right;
+  display: flex;
+
+  @media screen and (max-width: 992px) {
+    float: none;
+    margin-bottom: 16px;
+  }
+}
+
+.author-avatar {
+  width: 60px;
+  height: 60px;
+}
+
+.author-profile {
+  display: flex;
+  flex-direction: column;
+  padding-left: 12px;
+
+  .author-name {
+    font-weight: 700;
+    font-size: 20px;
+  }
+}
