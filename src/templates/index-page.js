@@ -16,7 +16,7 @@ export const IndexPageTemplate = ({ title, heading, description, src, alt, conte
       <p>{description}</p>
       <img src={src} alt={alt} />
       <PageContent content={content} />
-      <Link to="/page-2/">>> Go to second page</Link>
+      <Link to="/blog/">>> Go to blog page</Link>
     </Layout>
   )
 }

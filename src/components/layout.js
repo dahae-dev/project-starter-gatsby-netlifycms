@@ -8,7 +8,6 @@
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
-import { Container } from "react-bootstrap"
 
 import Header from "./header"
 import Footer from "./footer"
@@ -27,10 +26,16 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <Container>
-        <main>{children}</main>
+      <div style={{ background: `#f7f7f7` }}>
+        <main style={{
+          display: `flex`,
+          flexDirection: `column`,
+          width: `86%`,
+          margin: `0 auto`,
+          padding: `2.45rem 0`
+        }}>{children}</main>
         <Footer />
-      </Container>
+      </div>
     </>
   )
 }
