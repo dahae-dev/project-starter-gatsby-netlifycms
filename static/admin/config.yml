@@ -1,5 +1,6 @@
 backend:
   name: git-gateway
+  branch: blog
 
 media_folder: static/assets
 public_folder: assets
@@ -8,7 +9,7 @@ collections:
     - name: pages
       label: Pages
       files:
-        - file: "src/pages/index.md"
+        - file: src/pages/index.md
           label: Landing Page
           name: index
           fields:
@@ -17,3 +18,16 @@ collections:
             - {label: Intro, name: intro, widget: object, fields: [{label: Heading, name: heading, widget: string}, {label: Description, name: description, widget: text}]}
             - {label: Image, name: image, widget: object, fields: [{label: Src, name: src, widget: image}, {label: Alt, name: alt, widget: string}]}
             - {label: Body, name: body, widget: markdown}
+    - name: blog
+      label: Blog
+      folder: src/pages/blog
+      create: true
+      fields:
+        - {label: Template Key, name: templateKey, widget: hidden, default: blog-post}
+        - {label: Author, name: author, widget: object, fields: [{label: Name, name: name, widget: string}, {label: Role, name: role, widget: string}, {label: Avatar, name: avatar, widget: image}, {label: Location, name: location, widget: string}]}
+        - {label: Title, name: title, widget: string}
+        - {label: Tags, name: tags, widget: list, field: {label: Tag, name: tag, widget: string}}
+        - {label: Thumbnail, name: thumbnail, widget: image}
+        - {label: Created, name: created, widget: datetime}
+        - {label: Updated, name: updated, widget: datetime}
+        - {label: Body, name: body, widget: markdown}
